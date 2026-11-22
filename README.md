@@ -21,14 +21,10 @@ Not affiliated with Deutsche Bahn. Prices come from bahn.de's unofficial web API
 
 ### 2. Backend on Cloudflare
 1. Sign up at https://dash.cloudflare.com (free plan).
-2. **Workers & Pages → KV → Create namespace**, name it `sparpreis-alerts`. Copy its ID into `worker/wrangler.toml` (replace `PASTE_YOUR_KV_NAMESPACE_ID_HERE`).
-3. **My Profile → API Tokens → Create Token → "Edit Cloudflare Workers" template.** Copy the token.
-4. Copy your **Account ID** (right sidebar on the Workers & Pages overview).
-5. In GitHub: **Settings → Secrets and variables → Actions → New repository secret**:
-   - `CLOUDFLARE_API_TOKEN` = the token
-   - `CLOUDFLARE_ACCOUNT_ID` = the account ID
-6. Commit the `wrangler.toml` change and push. The "Deploy backend" action deploys the worker. Its URL appears in the Cloudflare dashboard, e.g. `https://sparpreis-radar.<your-subdomain>.workers.dev`.
-7. Check it: opening `<worker-url>/api/stations?q=Freising` should return JSON.
+2. **Workers KV → Create**, name it `sparpreis-alerts`, and put its ID into `worker/wrangler.toml` (done for this repo).
+3. **Workers & Pages → Create → Import a repository**, pick this repo, set **Root directory** to `worker`, and deploy.
+   Cloudflare then redeploys the backend on every push to `main`. No API token needed.
+4. Check it: `<worker-url>/api/stations?q=Freising` should return JSON.
 
 ### 3. App on GitHub Pages
 1. Put the worker URL into `web/config.js`.
