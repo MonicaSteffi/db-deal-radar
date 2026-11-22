@@ -1,0 +1,142 @@
+:root {
+  --bg: #f4f6f5;
+  --card: #ffffff;
+  --text: #17201d;
+  --muted: #5d6b66;
+  --line: #e2e8e5;
+  --brand: #0f5c4d;
+  --brand-soft: #e3f1ed;
+  --deal: #0a7d3b;
+  --deal-soft: #ddf5e6;
+  --radius: 14px;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1412;
+    --card: #182120;
+    --text: #e8efec;
+    --muted: #9aaaa4;
+    --line: #26332f;
+    --brand: #4fc3a1;
+    --brand-soft: #1d3330;
+    --deal: #5ee08f;
+    --deal-soft: #183626;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  font: 16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.top {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: calc(10px + env(safe-area-inset-top)) 16px 10px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; }
+.brand img { border-radius: 8px; }
+main { max-width: 640px; margin: 0 auto; padding: 14px; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 14px;
+}
+h2 { font-size: 17px; margin: 0 0 10px; }
+.muted { color: var(--muted); margin: 6px 0; }
+.small { font-size: 13px; }
+.hint { background: var(--brand-soft); padding: 10px 12px; border-radius: 10px; font-size: 14px; }
+.row-between { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+input[type=search] {
+  width: 100%; font: inherit; padding: 12px 14px;
+  border: 1px solid var(--line); border-radius: 10px;
+  background: var(--bg); color: var(--text);
+}
+input[type=search]:focus { outline: 2px solid var(--brand); border-color: transparent; }
+.search { position: relative; }
+.suggest {
+  position: absolute; left: 0; right: 0; top: calc(100% + 4px); z-index: 4;
+  list-style: none; margin: 0; padding: 4px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+}
+.suggest li { padding: 10px 12px; border-radius: 8px; cursor: pointer; }
+.suggest li:hover, .suggest li.active { background: var(--brand-soft); }
+
+button, .btn {
+  font: inherit; cursor: pointer; border: 0; border-radius: 10px;
+  padding: 9px 14px; background: var(--brand); color: #fff; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+@media (prefers-color-scheme: dark) { button, .btn { color: #0f1412; } }
+button.ghost { background: var(--brand-soft); color: var(--brand); }
+button.small { padding: 4px 10px; font-size: 13px; }
+button.icon { background: transparent; color: var(--muted); padding: 6px; font-size: 20px; line-height: 1; }
+button.icon.on { color: #e0a100; }
+
+.chips { display: flex; gap: 8px; overflow-x: auto; padding: 2px 0 8px; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex: 0 0 auto; padding: 8px 12px; border-radius: 999px;
+  background: var(--bg); color: var(--text); border: 1px solid var(--line); font-size: 14px;
+}
+.chip[aria-selected=true] { background: var(--brand); color: #fff; border-color: var(--brand); }
+@media (prefers-color-scheme: dark) { .chip[aria-selected=true] { color: #0f1412; } }
+
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); }
+.toggle.big { font-size: 16px; color: var(--text); margin-top: 6px; }
+.toggle input { width: 18px; height: 18px; accent-color: var(--brand); }
+
+.list { list-style: none; margin: 0; padding: 0; }
+.deal {
+  display: grid; grid-template-columns: 80px minmax(0, 1fr) auto; gap: 4px 10px; align-items: center;
+  padding: 12px 0; border-top: 1px solid var(--line);
+}
+.deal:first-child { border-top: 0; }
+.price { font-weight: 800; font-size: 20px; }
+.price.cheap { color: var(--deal); }
+.dest { font-weight: 600; overflow-wrap: anywhere; }
+.more { width: 100%; justify-content: center; margin-top: 8px; }
+.meta { color: var(--muted); font-size: 13px; }
+.actions { display: flex; align-items: center; gap: 4px; }
+.actions a { font-size: 14px; padding: 7px 10px; }
+.badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 6px; background: var(--deal-soft); color: var(--deal); margin-left: 6px; vertical-align: middle; }
+
+.saved { padding: 12px 0; border-top: 1px solid var(--line); }
+.saved:first-child { border-top: 0; }
+.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 8px; }
+.day {
+  text-align: center; padding: 6px 2px; border-radius: 8px; background: var(--bg);
+  font-size: 12px; color: var(--muted); text-decoration: none;
+}
+.day b { display: block; font-size: 13px; color: var(--text); }
+.day.low { background: var(--deal-soft); }
+.day.low b { color: var(--deal); }
+
+.steps { padding-left: 20px; margin: 10px 0; }
+.steps li { margin-bottom: 10px; }
+.topic { display: flex; align-items: center; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+.topic code { background: var(--bg); padding: 6px 10px; border-radius: 8px; font-size: 14px; word-break: break-all; }
+a { color: var(--brand); }
+
+.foot { color: var(--muted); font-size: 12px; text-align: center; padding: 8px 12px 24px; }
+.toast {
+  position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom)); transform: translateX(-50%);
+  background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-size: 14px;
+  max-width: 90vw; z-index: 10;
+}
+.skeleton { height: 54px; border-radius: 10px; background: linear-gradient(90deg, var(--bg), var(--line), var(--bg)); background-size: 200% 100%; animation: sh 1.2s infinite; margin: 8px 0; }
+@keyframes sh { to { background-position: -200% 0; } }
+
+.legal h1 { font-size: 22px; margin: 0 0 12px; }
+.legal h2 { font-size: 15px; margin: 18px 0 6px; }
+.legal p { margin: 0 0 8px; font-size: 15px; }
+.foot a { color: var(--muted); }

@@ -1,0 +1,19 @@
+name = "sparpreis-radar"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+# Weekly alerts: every hour from 06:00 to 20:00 UTC on Saturdays and Sundays,
+# when the Super Sparpreis Last Minute tickets for the following week go on sale.
+[triggers]
+crons = ["0 6-20 * * SAT,SUN"]
+
+[vars]
+ALLOWED_ORIGINS = "https://monicasteffi.github.io"
+USER_AGENT = "SparpreisRadar/0.1 (+https://github.com/MonicaSteffi/db-deal-radar)"
+NTFY_SERVER = "https://ntfy.sh"
+
+# Create the namespace once in the Cloudflare dashboard (Workers & Pages → KV → Create)
+# and paste its ID here.
+[[kv_namespaces]]
+binding = "ALERTS"
+id = "PASTE_YOUR_KV_NAMESPACE_ID_HERE"

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sparpreis Radar</title>
+  <meta name="description" content="Günstige Sparpreise ab deinem Bahnhof finden – sortiert vom günstigsten Preis an.">
+  <meta name="theme-color" content="#0f5c4d">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <img src="icons/icon-192.png" alt="" width="32" height="32">
+      <span>Sparpreis Radar</span>
+    </div>
+    <button id="installBtn" class="ghost" hidden>App installieren</button>
+  </header>
+
+  <main>
+    <p id="iosHint" class="hint" hidden>
+      Als App installieren: in Safari auf <strong>Teilen</strong> tippen, dann <strong>Zum Home-Bildschirm</strong>.
+    </p>
+
+    <section class="card">
+      <h2>Dein Startbahnhof</h2>
+      <div class="search">
+        <input id="originInput" type="search" placeholder="z. B. München Hbf" autocomplete="off" aria-label="Startbahnhof">
+        <ul id="originSuggest" class="suggest" hidden></ul>
+      </div>
+      <p id="originSaved" class="muted" hidden></p>
+    </section>
+
+    <section class="card" id="savedCard" hidden>
+      <h2>Gespeicherte Ziele</h2>
+      <p class="muted" id="savedWeekLabel"></p>
+      <ul id="savedList" class="list"></ul>
+    </section>
+
+    <section class="card" id="dealsCard" hidden>
+      <div class="row-between">
+        <h2>Günstige Ziele</h2>
+        <label class="toggle"><input id="onlyCheap" type="checkbox"> nur bis 6,99 €</label>
+      </div>
+      <div id="dayChips" class="chips" role="tablist"></div>
+      <p id="dealsStatus" class="muted"></p>
+      <ul id="dealsList" class="list"></ul>
+      <button id="moreBtn" class="ghost more" hidden>Mehr Ziele anzeigen</button>
+    </section>
+
+
+    <section class="card" id="notifyCard">
+      <h2>Benachrichtigungen</h2>
+      <p class="muted">Jedes Wochenende, wenn die Last-Minute-Sparpreise für die Folgewoche erscheinen, bekommst du den günstigsten Preis für deine gespeicherten Ziele aufs Handy.</p>
+      <ol class="steps">
+        <li>Installiere die kostenlose App <strong>ntfy</strong>:
+          <a href="https://play.google.com/store/apps/details?id=io.heckel.ntfy" target="_blank" rel="noopener">Android</a> ·
+          <a href="https://apps.apple.com/app/ntfy/id1625396347" target="_blank" rel="noopener">iPhone</a></li>
+        <li>Tippe in ntfy auf <strong>+</strong> und abonniere diesen Kanal:
+          <div class="topic"><code id="topicCode"></code><button id="copyTopic" class="ghost small">Kopieren</button></div>
+        </li>
+        <li>Schalte die Benachrichtigungen hier ein:
+          <label class="toggle big"><input id="alertsOn" type="checkbox"> Wöchentliche Preis-Alarme</label>
+        </li>
+      </ol>
+      <p class="muted small">Der Kanalname ist dein persönlicher Schlüssel. Teile ihn nicht.</p>
+    </section>
+
+    <footer class="foot">
+      Inoffizielles Angebot, keine Verbindung zur Deutschen Bahn. Preise: einfache Fahrt, 2. Klasse, 1 Erwachsener ohne BahnCard,
+      Stand der letzten Abfrage. Gebucht wird immer auf bahn.de.
+      <br><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
