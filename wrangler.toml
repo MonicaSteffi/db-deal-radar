@@ -1,0 +1,24 @@
+# Used by Cloudflare's Git integration, which builds from the repository root.
+# Deploys the backend (worker/src) and also serves the web app from web/ as static files.
+name = "db-deal-radar"
+main = "worker/src/index.js"
+account_id = "ad88efa900f411bf1defd4081df9c354"
+compatibility_date = "2026-11-01"
+
+[assets]
+directory = "./web"
+not_found_handling = "none"
+run_worker_first = ["/api/*"]
+
+# Weekly alerts: every hour from 06:00 to 20:00 UTC on Saturdays and Sundays.
+[triggers]
+crons = ["0 6-20 * * SAT,SUN"]
+
+[vars]
+ALLOWED_ORIGINS = "https://monicasteffi.github.io,https://db-deal-radar.mail2steff.workers.dev"
+USER_AGENT = "SparpreisRadar/0.1 (+https://github.com/MonicaSteffi/db-deal-radar)"
+NTFY_SERVER = "https://ntfy.sh"
+
+[[kv_namespaces]]
+binding = "ALERTS"
+id = "2ca89c527388400f9d4f338de845d33c"

@@ -1,4 +1,4 @@
-name = "sparpreis-radar"
+name = "db-deal-radar"
 main = "src/index.js"
 account_id = "ad88efa900f411bf1defd4081df9c354"
 compatibility_date = "2026-11-01"
@@ -9,7 +9,7 @@ compatibility_date = "2026-11-01"
 crons = ["0 6-20 * * SAT,SUN"]
 
 [vars]
-ALLOWED_ORIGINS = "https://monicasteffi.github.io"
+ALLOWED_ORIGINS = "https://monicasteffi.github.io,https://db-deal-radar.mail2steff.workers.dev"
 USER_AGENT = "SparpreisRadar/0.1 (+https://github.com/MonicaSteffi/db-deal-radar)"
 NTFY_SERVER = "https://ntfy.sh"
 
