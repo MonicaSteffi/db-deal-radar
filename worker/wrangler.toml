@@ -17,4 +17,4 @@ NTFY_SERVER = "https://ntfy.sh"
 # and paste its ID here.
 [[kv_namespaces]]
 binding = "ALERTS"
-id = "PASTE_YOUR_KV_NAMESPACE_ID_HERE"
+id = "2ca89c527388400f9d4f338de845d33c"
